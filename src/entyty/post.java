@@ -11,7 +11,7 @@ import org.bson.Document;
  */
 public class post {
     String Usuario;
-    String Cont;
+    String Contraseña;
     Date Fecha;
     List<String> Tag = new ArrayList<>();
     List<comentario> Comentarios;
@@ -29,11 +29,11 @@ public class post {
     }
 //Devuelve variable Cont
     public String getCont() {
-        return Cont;
+        return Contraseña;
     }
  //Asigna variable Conte
     public void setConte(String Conte) {
-        this.Cont = Conte;
+        this.Contraseña = Conte;
     }
  //Devuelve variable Fecha
     public Date getFecha() {

@@ -14,11 +14,11 @@ import org.bson.Document;
  *
  * @author RayoMC
  */
-public class uDAO  {
+public class daoUsuario  {
 
             private MongoCollection<Document> usuari;
 
-    public uDAO(MongoCollection<Document> users) {
+    public daoUsuario(MongoCollection<Document> users) {
         this.usuari = users;
     }
 
@@ -32,8 +32,8 @@ public class uDAO  {
                  user.setContraseña(doc.getString("Contraseña"));
                  user.setEdad(doc.getInteger("Edad"));
                  user.setSexo(doc.getString("Sexo"));
-                 user.setFechaNazi(doc.getDate("Fecha Nacimiento"));
-                 user.setGusMusica(doc.getList("Gustos Musicales", 
+                 user.setFechaNacimiento(doc.getDate("Fecha Nacimiento"));
+                 user.setGustoMusica(doc.getList("Gustos Musicales", 
                                                String.class));
                  user.setGusPeli(doc.getList("Gusto de Pelicula", 
                                                String.class));
@@ -52,8 +52,8 @@ public class uDAO  {
                      user.setContraseña(docc.getString("Contraseña"));
                      user.setEdad(docc.getInteger("Edad"));
                      user.setSexo(docc.getString("Sexo"));
-                     user.setFechaNazi(docc.getDate("Fecha Nacimiento"));
-                     user.setGusMusica(docc.getList("Gustos Musicales", 
+                     user.setFechaNacimiento(docc.getDate("Fecha Nacimiento"));
+                     user.setGustoMusica(docc.getList("Gustos Musicales", 
                                                     String.class));
                      user.setGusPeli(docc.getList("Gusto de Pelicula", 
                                                     String.class));
@@ -68,19 +68,19 @@ public class uDAO  {
                     .append("Contraseña", usuario.getContraseña())
                     .append("Edad", usuario.getEdad())
                     .append("Sexo", usuario.getSexo())
-                    .append("Fecha Nacimiento", usuario.getFechaNazi())
-                    .append("Gustos Musicales", usuario.getGusMusica())
+                    .append("Fecha Nacimiento", usuario.getFechaNacimiento())
+                    .append("Gustos Musicales", usuario.getGustoMusica())
                     .append("Gusto de Pelicula", usuario.getGusPeli());
                          usuari.insertOne(document);
     }
 
     // Eliminar usuario con el username del usuario pasado
-      public void Borrar(usuario usuario) {
+      public void borrar(usuario usuario) {
          DeleteResult delete = usuari.deleteOne(Filters.eq("Nombre Usuario", usuario.getNomUsuario()));
     }
 
    // Actualizar datos del usuario
-      public void Actualizar(usuario usuario) {
+      public void actualizar(usuario usuario) {
          UpdateResult resultado;
             resultado = usuari.updateOne(
                 Filters.eq("Nombre Usuario", usuario.getNomUsuario()),
@@ -90,7 +90,7 @@ public class uDAO  {
                    Updates.set("Contraseña", usuario.getContraseña()));
             resultado = usuari.updateOne(
                 Filters.eq("Nombre Usuario", usuario.getNomUsuario()),
-                   Updates.set("Gustos Musicales", usuario.getGusMusica()));
+                   Updates.set("Gustos Musicales", usuario.getGustoMusica()));
             resultado = usuari.updateOne(
                 Filters.eq("Nombre Usuario", usuario.getNomUsuario()),
                    Updates.set("Gusto de las Pelicula", usuario.getGusPeli()));

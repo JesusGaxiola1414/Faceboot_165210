@@ -16,20 +16,20 @@ import org.bson.Document;
  *
  * @author RayoMC
  */
-public class pDAOO{
+public class daoPost{
 
           private MongoCollection<Document> pousty;
 
-    public pDAOO(MongoCollection<Document> pousty) {
+    public daoPost(MongoCollection<Document> pousty) {
         this.pousty = pousty;
     }
                
 // Se crea un Documento con Usuario, Fecha, Contenido, Comentarios y Tag como una matriz
-    private static Document GDocum(post post) {
+    private static Document gDocumento(post post) {
                 List<Document> comentarios = new ArrayList<>();
                     List<comentario> f = post.getComentarios();
                        if (f != null) {  for (comentario come1na : f) {
-                         comentarios.add(GDocTod(come1na));
+                         comentarios.add(dDocumentoTod(come1na));
                       }
                     }
            Document documento = new Document()
@@ -42,7 +42,7 @@ public class pDAOO{
     }
 
 // Se crea un Documento con Usuario, Fecha y Contenido como una matriz
-      private static Document GDocTod(comentario comentario) {
+      private static Document dDocumentoTod(comentario comentario) {
         Document documento = new Document()
                 .append("Usuario", comentario.getUsuario())
                 .append("Fecha", comentario.getFecha())
@@ -51,13 +51,13 @@ public class pDAOO{
     }
 
  // Crear un Post a partir de la informacion del documento
-      private static post DocPost(Document documento) {
+      private static post documentoPost(Document documento) {
           post post = new post();   
                List<comentario> comentario = new ArrayList<>();
                    List<Document> docudos = documento.getList("Comentarios", 
                                                                Document.class);
                        if (docudos != null) { for (int i = 0; i < docudos.size(); i++) {
-                         comentario.add(NCome(docudos.get(i)));
+                         comentario.add(nComentario(docudos.get(i)));
                        }
                    }
            post.setUsuario(documento.getString("Usuario"));
@@ -71,15 +71,15 @@ public class pDAOO{
     }
 
  // Regresar todos los Posts en una lista
-      public List<post> PTodos() {
+      public List<post> pTodos() {
         List<post> resultado = new ArrayList<>();
             for (Document documento : pousty.find()) {
-                 resultado.add(DocPost(documento));
+                 resultado.add(documentoPost(documento));
                }
                    return resultado;
     }
  //Crea un comentario a base de un documento con usuario, fecha , contnido
-     private static comentario NCome(Document documento) {
+     private static comentario nComentario(Document documento) {
         comentario come = new comentario();
            come.setUsuario(documento.getString("usuario"));
            come.setFecha(documento.getDate("fecha"));
@@ -88,40 +88,40 @@ public class pDAOO{
     }
       
  // Encontrar posts por Tag y regresarlos en una lista de Posts
-      public List<post> PTags(String tagg) {
+      public List<post> pTags(String tagg) {
         List<post> resultado = new ArrayList<>();
             for (Document documento : pousty.find(Filters.in("Tags", tagg))) {
-                 resultado.add(DocPost(documento));
+                 resultado.add(documentoPost(documento));
                }
                    return resultado;
     }
 
  // Eliminar post
-      public void Borrar(post post) {
+      public void borrar(post post) {
         DeleteResult delete = pousty.deleteOne(Filters.eq("Contenido", 
                                                            post.getCont()));
     }
 
 // Agregar post
-      public void Añadir(post post) {
-        pousty.insertOne(GDocum(post));
+      public void añadir(post post) {
+        pousty.insertOne(gDocumento(post));
     }
 
 // Obtener Post por contenido
-      public post PConte(String contenido) {
+      public post pConte(String contenido) {
         Document documento = pousty.find(Filters.eq("Contenido", 
                                                     contenido)).first();
-            post post = DocPost(documento);
+            post post = documentoPost(documento);
                 return post;
     }
 
 // Agregar todos los comentarios del List
 // Despues
 // Actualizar comentarios
-      public void GgCome(post post, List<comentario> comentario) {
+      public void ggCome(post post, List<comentario> comentario) {
         List<Document> comentarios = new ArrayList<>();
              for (comentario com : comentario) {
-                  comentarios.add(GDocTod(com));
+                  comentarios.add(dDocumentoTod(com));
         } 
                UpdateResult update = pousty.updateOne(
                                            Filters.eq("Contenido", post.getCont()),

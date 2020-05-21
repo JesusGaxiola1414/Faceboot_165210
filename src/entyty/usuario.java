@@ -15,24 +15,24 @@ public class usuario {
     String Nombre;
     int Edad;
     String Sexo;
-    Date FechaNazi;
-    List<String> GusMusica = new ArrayList<>();
-    List<String> GusPeli = new ArrayList<>();
+    Date FechaNacimiento;
+    List<String> GustoMusica = new ArrayList<>();
+    List<String> GustoPelilicula = new ArrayList<>();
     List<post> comentarios = new ArrayList<>();
 //Constructor por defecto
     public usuario() {
     }
  //Constructor que inicializa la variable
     public usuario(String NomUsuario, String Contraseña, String Nombre, int Edad, 
-                   String Sexo, Date FechaNazi, List<String> GusMusica, List<String> GusPeli) {
+                   String Sexo, Date FechaNacimiento, List<String> GustoMusica, List<String> GusPeli) {
         this.NomUsuario = NomUsuario;
         this.Contraseña = Contraseña;
         this.Nombre = Nombre;
         this.Edad = Edad;
         this.Sexo = Sexo;
-        this.FechaNazi = FechaNazi;
-        this.GusMusica = GusMusica;
-        this.GusPeli = GusPeli;
+        this.FechaNacimiento = FechaNacimiento;
+        this.GustoMusica = GustoMusica;
+        this.GustoPelilicula = GusPeli;
     }
     
 //Devuelve variable NomUsuario
@@ -76,28 +76,28 @@ public class usuario {
         this.Sexo = Sexo;
     }
 //Devuelve variable FechaNazi
-    public Date getFechaNazi() {
-        return FechaNazi;
+    public Date getFechaNacimiento() {
+        return FechaNacimiento;
     }
 //Asigna variable FechaNazi
-    public void setFechaNazi(Date FechaNazi) {
-        this.FechaNazi = FechaNazi;
+    public void setFechaNacimiento(Date FechaNazi) {
+        this.FechaNacimiento = FechaNazi;
     }
     //Devuelve variable GusMusica
-    public List<String> getGusMusica() {
-        return GusMusica;
+    public List<String> getGustoMusica() {
+        return GustoMusica;
     }
 //Asigna variable GusMusica
-    public void setGusMusica(List<String> GusMusica) {
-        this.GusMusica = GusMusica;
+    public void setGustoMusica(List<String> GusMusica) {
+        this.GustoMusica = GusMusica;
     }
     //Devuelve variable GusPeli
     public List<String> getGusPeli() {
-        return GusPeli;
+        return GustoPelilicula;
     }
 //Asigna variable GusPeli
     public void setGusPeli(List<String> GusPeli) {
-        this.GusPeli = GusPeli;
+        this.GustoPelilicula = GusPeli;
     }    
 //Devuelve variable Contraseña
     public List<post> getComentarios() {
